@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockChain Demo.cpp" />
     <ClCompile Include="KeyPair.cpp" />
     <ClCompile Include="Message.cpp" />
@@ -139,7 +140,9 @@
   <ItemGroup>
     <ClInclude Include="KeyPair.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SHA_256.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Transaction.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

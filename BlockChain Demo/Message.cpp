@@ -8,8 +8,14 @@ Message::Message(string _information, KeyPair _keys) :
 
 }
 
-Message::~Message()
+//Getters
+string Message::getMessage() const
 {
+	return message;
+}
+RSA::PublicKey Message::getPublicKey() const
+{
+	return publicKey;
 }
 
 bool Message::verifier() const

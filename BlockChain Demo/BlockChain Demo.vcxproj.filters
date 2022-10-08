@@ -45,6 +45,9 @@
     <ClCompile Include="Message.cpp">
       <Filter>Source Files\Transaction</Filter>
     </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source Files\Chain</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SHA_256.h">
@@ -61,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="Message.h">
       <Filter>Header Files\Transaction</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Header Files\Chain</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

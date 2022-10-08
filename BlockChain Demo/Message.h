@@ -14,6 +14,9 @@ public:
 
 	bool verifier() const;
 
+	string			getMessage() const;
+	RSA::PublicKey  getPublicKey() const;
+
 	SecByteBlock sign(RSA::PrivateKey&);
 private:
 	string			message;

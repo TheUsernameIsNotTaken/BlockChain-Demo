@@ -1,12 +1,10 @@
 #include "Transaction.h"
 
-Transaction::Transaction(User _user, string _message, int _amount) : 
+Transaction::Transaction(User _user, Message _message) :
 	user(_user),
-	to(_to),
-	amount(_amount)
+	message(_message)
 {
-	from = _user.getName();
-	hashTransaction = SHA_256::sha256(from + to + std::to_string(_amount));
+	hashTransaction = SHA_256::sha256(_user.toString() + "_" + message.getMessage());
 }
 
 Transaction::~Transaction()

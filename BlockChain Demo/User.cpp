@@ -15,10 +15,6 @@ User::User(std::string _name, std::string _surname) :
 	keys = KeyPair();
 }
 
-User::~User()
-{
-}
-
 
 std::string User::getName() const
 {
