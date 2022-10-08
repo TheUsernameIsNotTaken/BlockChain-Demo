@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Transaction">
+      <UniqueIdentifier>{4f78624e-4641-4e3a-a5db-be6c95f957ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chain">
+      <UniqueIdentifier>{5e58d77f-2eea-44ef-84c9-b92bc206c32a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Transaction">
+      <UniqueIdentifier>{0c76b1f4-dcdf-4147-a795-e0d613052847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chain">
+      <UniqueIdentifier>{20abca23-5144-4b0f-af57-0ae779db8e7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BlockChain Demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SHA_256.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transaction.cpp">
+      <Filter>Source Files\Transaction</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\Transaction</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyPair.cpp">
+      <Filter>Source Files\Transaction</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Source Files\Transaction</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SHA_256.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transaction.h">
+      <Filter>Header Files\Transaction</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyPair.h">
+      <Filter>Header Files\Transaction</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files\Transaction</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files\Transaction</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
