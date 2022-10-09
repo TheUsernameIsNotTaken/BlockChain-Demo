@@ -140,7 +140,6 @@
   <ItemGroup>
     <ClInclude Include="KeyPair.h" />
     <ClInclude Include="Message.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SHA_256.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Transaction.h" />

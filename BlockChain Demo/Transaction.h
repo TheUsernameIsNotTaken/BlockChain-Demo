@@ -10,7 +10,15 @@ class Transaction
 {
 public:
 	Transaction(User, Message);
-	~Transaction();
+	~Transaction() {};
+
+	bool isCorrect() const;
+	string toString() const;
+
+	User getUser() const;
+	Message getMessage() const;
+	string getHashTransaction() const;
+
 private:
 	User user;
 	Message message;

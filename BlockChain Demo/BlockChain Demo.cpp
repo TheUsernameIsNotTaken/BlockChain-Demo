@@ -6,7 +6,7 @@
 int main()
 {
     //Fist test: create digital signature with cryptlib
-    
+    printf("Hello world!");
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

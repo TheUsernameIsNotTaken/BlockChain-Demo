@@ -65,9 +65,6 @@
     <ClInclude Include="Message.h">
       <Filter>Header Files\Transaction</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Header Files\Chain</Filter>
     </ClInclude>

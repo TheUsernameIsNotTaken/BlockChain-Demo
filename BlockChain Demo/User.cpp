@@ -24,9 +24,15 @@ std::string User::getSurname() const {
 	return surname;
 }
 
-KeyPair User::getKeyPair() const
-{
-	return KeyPair();
+RSA::PublicKey User::getPublicKey() const {
+	return keys.getPublicKey();
+}
+KeyPair User::getKeyPair() const {
+	return keys;
+
+}
+RSA::PrivateKey User::getPrivateKey() const {
+	return keys.getPrivateKey();
 }
 
 std::string User::toString() const
