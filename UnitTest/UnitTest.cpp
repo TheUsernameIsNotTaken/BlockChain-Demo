@@ -59,7 +59,37 @@ namespace UnitTests
 			Assert::AreEqual(t.toString(), toStr, L"Wrong toString()", LINE_INFO());
 			Assert::AreEqual(t.getHashTransaction(), CurrHash, L"Different hashes", LINE_INFO());
 			Assert::IsTrue(isCorr, L"Uncorrect transaction", LINE_INFO());
-
+		}
+		TEST_METHOD(TestBlockMining)
+		{
+			//Arrange
+			//Users
+			User u1(name, surname, kp);
+			User u2("Elemer", "Elmeno");
+			User u3("Steve", "Elive");
+			User u4("Mordor", "Mormol");
+			//Messages
+			Message m1(info, kp);
+			Message m2("Üdvözletem mindenkinek!", u2.getKeyPair());
+			Message m3("Hello guyz and galz!", u3.getKeyPair());
+			Message m4("WHYYYYYYYYYY??????", u4.getKeyPair());
+			//Transactions
+			Transaction t1(u1, m1);
+			Transaction t2(u2, m2);
+			Transaction t3(u3, m3);
+			Transaction t4(u4, m4);
+			//Act
+			//Build Block
+			
+			//Assert
+			//Correction
+			//Transaction correction
+			Assert::IsTrue(t1.isCorrect(), L"Uncorrect transaction 1", LINE_INFO());
+				// TODO
+			//Block Correction
+				// TODO
+			//Uncorruptedness test
+				// TODO
 		}
 	};
 }
