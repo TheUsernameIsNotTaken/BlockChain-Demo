@@ -21,7 +21,6 @@ Block::Block(const ptr_Block& prevBloc, const vector<Transaction>& _transaction)
 
 }
 
-
 //!
 //! \brief Construct a Block without no reference to the previous one. Should be used with precautions
 //!
