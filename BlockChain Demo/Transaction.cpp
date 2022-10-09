@@ -1,6 +1,6 @@
 #include "Transaction.h"
 
-Transaction::Transaction(User _user, Message _message) :
+Transaction::Transaction(const User& _user, const Message& _message) :
 	user(_user),
 	message(_message)
 {
@@ -18,9 +18,9 @@ bool Transaction::isCorrect() const
 		return false;
 
 	if (message.getMessage().size() <= 1 ||
-		message.getPublicKey().GetPublicExponent() == user.getPublicKey().GetPublicExponent() ||
-		hashTransaction != SHA_256::sha256(user.toString() + "_" + message.getMessage())
-		// TODO Something about the time
+		message.getPublicKey().GetPublicExponent() != user.getPublicKey().GetPublicExponent() ||
+		hashTransaction != SHA_256::sha256(user.toString() + "_" + message.getMessage()) ||
+		!message.verifier()
 		)
 		return false;
 	return true;

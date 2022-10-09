@@ -9,7 +9,8 @@ using std::string;
 class Transaction
 {
 public:
-	Transaction(User, Message);
+	//Transaction() : user(), message(), hashTransaction() {};
+	Transaction(const User&, const Message&);
 	~Transaction() {};
 
 	bool isCorrect() const;

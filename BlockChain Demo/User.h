@@ -6,7 +6,8 @@
 class User
 {
 public:
-	User(std::string, std::string, KeyPair);
+	//User() : name(), surname(), keys() {};
+	User(std::string, std::string, const KeyPair&);
 	User(std::string, std::string);
 	~User() {};
 

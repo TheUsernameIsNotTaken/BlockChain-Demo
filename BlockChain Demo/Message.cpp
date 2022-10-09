@@ -1,11 +1,11 @@
 #include "Message.h"
 
-Message::Message(string _information, KeyPair _keys) :
+Message::Message(string _information, const KeyPair& _keys) :
 	message(_information),
 	publicKey(_keys.getPublicKey()),
 	messageSize(message.size())
 {
-
+	sign(_keys.getPrivateKey());
 }
 
 //Getters
@@ -26,7 +26,7 @@ bool Message::verifier() const
 	return verifier.VerifyMessage((const byte*)message.c_str(), message.length(), signature, signature.size());
 }
 
-SecByteBlock Message::sign(RSA::PrivateKey& pk)
+SecByteBlock Message::sign(RSA::PrivateKey pk)
 {
 	//Declare the used objects
 	CryptoPP::AutoSeededRandomPool rng;

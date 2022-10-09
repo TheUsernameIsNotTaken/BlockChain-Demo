@@ -77,81 +77,81 @@ string KeyPair::decrypt(string cipher) {
 	return	pl_text;
 }
 
-//Saving a key to file
-void KeyPair::Save(const string& filename, const CryptoPP::BufferedTransformation& bt)
-{
-	CryptoPP::FileSink file(filename.c_str());
-
-	bt.CopyTo(file);
-	file.MessageEnd();
-
-}
-
-void KeyPair::savePrivateKey(const string& filename, const RSA::PrivateKey& key)
-{
-	CryptoPP::ByteQueue queue;
-	key.Save(queue);
-	Save(filename, queue);
-}
-
-void KeyPair::savePublicKey(const string& filename, const RSA::PublicKey& key) {
-	CryptoPP::ByteQueue queue;
-	key.Save(queue);
-	Save(filename, queue);
-}
-
-//Loading back
-void KeyPair::Load(const string& filename, CryptoPP::BufferedTransformation& bt)
-{
-
-	try {
-		CryptoPP::FileSource file(filename.c_str(), true /*pumpAll*/);
-		file.TransferTo(bt);
-		bt.MessageEnd();
-	}
-	catch (CryptoPP::FileSource::Err e)
-	{
-		return;
-	}
-	catch (...)
-	{
-		throw CryptoPP::FileSource::Err::INVALID_ARGUMENT;
-	}
-
-}
-
-bool KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
-{
-	try {
-		CryptoPP::ByteQueue queue;
-		Load(filename, queue);
-		key.Load(queue);
-		return true; // TODO
-	}
-	catch (std::exception e)
-	{
-		return false;
-	}
-	catch (...)
-	{
-		return false;
-	}
-}
-
-bool KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
-{
-	try {
-		CryptoPP::ByteQueue queue;
-		Load(filename, queue);
-		key.Load(queue);
-		return true; // TODO
-	}
-	catch (std::exception e)
-	{
-		return false;
-	}
-	catch (...)
-	{
-		return false;
-	}
-}
+////Saving a key to file
+//void KeyPair::Save(const string& filename, const CryptoPP::BufferedTransformation& bt)
+//{
+//	CryptoPP::FileSink file(filename.c_str());
+//
+//	bt.CopyTo(file);
+//	file.MessageEnd();
+//
+//}
+//
+//void KeyPair::savePrivateKey(const string& filename, const RSA::PrivateKey& key)
+//{
+//	CryptoPP::ByteQueue queue;
+//	key.Save(queue);
+//	Save(filename, queue);
+//}
+//
+//void KeyPair::savePublicKey(const string& filename, const RSA::PublicKey& key) {
+//	CryptoPP::ByteQueue queue;
+//	key.Save(queue);
+//	Save(filename, queue);
+//}
+//
+////Loading back
+//void KeyPair::Load(const string& filename, CryptoPP::BufferedTransformation& bt)
+//{
+//
+//	try {
+//		CryptoPP::FileSource file(filename.c_str(), true /*pumpAll*/);
+//		file.TransferTo(bt);
+//		bt.MessageEnd();
+//	}
+//	catch (CryptoPP::FileSource::Err e)
+//	{
+//		return;
+//	}
+//	catch (...)
+//	{
+//		throw CryptoPP::FileSource::Err::INVALID_ARGUMENT;
+//	}
+//
+//}
+//
+//bool KeyPair::loadPrivateKey(const string& filename, RSA::PrivateKey& key)
+//{
+//	try {
+//		CryptoPP::ByteQueue queue;
+//		Load(filename, queue);
+//		key.Load(queue);
+//		return true; // TODO
+//	}
+//	catch (std::exception e)
+//	{
+//		return false;
+//	}
+//	catch (...)
+//	{
+//		return false;
+//	}
+//}
+//
+//bool KeyPair::loadPublicKey(const string& filename, RSA::PublicKey& key)
+//{
+//	try {
+//		CryptoPP::ByteQueue queue;
+//		Load(filename, queue);
+//		key.Load(queue);
+//		return true; // TODO
+//	}
+//	catch (std::exception e)
+//	{
+//		return false;
+//	}
+//	catch (...)
+//	{
+//		return false;
+//	}
+//}

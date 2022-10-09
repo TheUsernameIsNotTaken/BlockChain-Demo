@@ -9,7 +9,8 @@ using std::string;
 class Message
 {
 public:
-	Message(string, KeyPair);
+	Message() : message(), publicKey(), messageSize(), signature() {};
+	Message(string, const KeyPair&);
 	~Message() {};
 
 	bool verifier() const;
@@ -17,7 +18,7 @@ public:
 	string			getMessage() const;
 	RSA::PublicKey  getPublicKey() const;
 
-	SecByteBlock sign(RSA::PrivateKey&);
+	SecByteBlock sign(RSA::PrivateKey);
 private:
 	string			message;
 	RSA::PublicKey	publicKey;

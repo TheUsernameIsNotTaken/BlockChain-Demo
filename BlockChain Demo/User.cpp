@@ -1,6 +1,6 @@
 #include "User.h"
 
-User::User(std::string _name, std::string _surname, KeyPair _keys) :
+User::User(std::string _name, std::string _surname, const KeyPair& _keys) :
 	name(_name),
 	surname(_surname),
 	keys(_keys)
