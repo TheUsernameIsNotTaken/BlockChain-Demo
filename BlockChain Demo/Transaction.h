@@ -16,6 +16,17 @@ public:
 	bool isCorrect() const;
 	string toString() const;
 
+	bool operator==(const Transaction& tr)
+	{
+		return (tr.user.getName() == user.getName() &&
+			tr.hashTransaction == hashTransaction &&
+			tr.message.getMessage() == message.getMessage());
+	}
+	bool operator<(const Transaction& tr) const
+	{
+		return hashTransaction < tr.getHashTransaction();
+	}
+
 	User getUser() const;
 	Message getMessage() const;
 	string getHashTransaction() const;

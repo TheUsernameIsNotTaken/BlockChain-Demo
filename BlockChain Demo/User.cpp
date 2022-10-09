@@ -39,3 +39,13 @@ std::string User::toString() const
 {
 	return getName() + " " + getSurname();
 }
+//!
+//! \brief 
+//!
+//! \param : os 
+//! \return :std::ostream&
+//!
+std::ostream& User::operator<<(std::ostream& os) {
+	os << name << " " << surname << std::endl;
+	return os;
+}

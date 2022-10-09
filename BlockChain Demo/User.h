@@ -18,6 +18,7 @@ public:
 	KeyPair			getKeyPair() const;
 	RSA::PrivateKey getPrivateKey() const;
 
+	std::ostream& operator<<(std::ostream& os);
 	std::string		toString() const;
 
 private:

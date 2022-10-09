@@ -48,6 +48,9 @@
     <ClCompile Include="Block.cpp">
       <Filter>Source Files\Chain</Filter>
     </ClCompile>
+    <ClCompile Include="BlockHeader.cpp">
+      <Filter>Source Files\Chain</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SHA_256.h">
@@ -68,5 +71,11 @@
     <ClInclude Include="Block.h">
       <Filter>Header Files\Chain</Filter>
     </ClInclude>
+    <ClInclude Include="BlockHeader.h">
+      <Filter>Header Files\Chain</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

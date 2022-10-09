@@ -15,6 +15,22 @@ public:
 
 	bool verifier() const;
 
+	bool operator==(const Message& rhs) const
+	{
+		return (rhs.message == this->message && signature == rhs.signature);
+	}
+	// For the MultiMap
+	Message& operator=(const Message& rhs)
+	{
+		if (*this == rhs)
+			return *this;
+		message = rhs.message;
+		signature = rhs.signature;
+		publicKey = rhs.publicKey;
+		messageSize = rhs.messageSize;
+		return *this;
+	}
+
 	string			getMessage() const;
 	RSA::PublicKey  getPublicKey() const;
 
