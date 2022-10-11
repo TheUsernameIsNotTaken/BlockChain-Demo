@@ -7,21 +7,19 @@
 #include "Transaction.h"
 
 static int DIFFICULTY_MINING = 4;
-static std::string FIRST_BLOCK_HASH = "0000f671bf37164c071d526e8960fd9122383d5d73ef3b60f1bc9f330a15c1e1";
+static std::string FIRST_BLOCK_HASH = "0000F671BF37164C071D526E8960FD9122383D5D73EF3B60F1BC9F330A15C1E1";
 
 using std::vector;
 
 
 class Block
-{	
-	using ptr_Block = std::shared_ptr<Block>;
+{
 public:
 	explicit Block(int);
-	Block(const ptr_Block&, const vector<Transaction>&);
 	Block(string, int, vector<string>, const BlockHeader);
 	Block() = delete;
 
-	void set_Hash_Merkle_Root(string);
+	void update_PreviousHash(string);
 
 	~Block();
 
@@ -29,7 +27,7 @@ public:
 	bool operator==(const Block&) const;
 
 	const vector<string> get_Transactions_List() const;
-	const BlockHeader& get_Header() const;
+	const BlockHeader&   get_Header() const;
 	string			     get_PreviousBlockHash() const;
 	string			     get_BlockHash() const;
 
@@ -48,4 +46,5 @@ private:
 	
 	vector<string> transactions;
 	void BuildMerkleRoot();
+
 };

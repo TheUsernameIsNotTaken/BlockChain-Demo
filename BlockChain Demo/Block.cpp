@@ -1,27 +1,6 @@
 #include "Block.h"
 
 //!
-//! \brief Construct a fully correct Block with a reference to a previous one. Main Constructor
-//! Construct a new Block, Build the header of the Block and also the Merkle Tree
-//! \param : prevBloc A pointer to the previous Block
-//! \param : _transaction A vector of transaction
-//! \return :
-//!
-Block::Block(const ptr_Block& prevBloc, const vector<Transaction>& _transaction) :
-	previousHash(prevBloc->currentHash), numOfTra(_transaction.size()), header(prevBloc->get_Header().get_NumeroBloc() + 1),
-	transactions(), currentHash()
-{
-
-	// Copy the Hash of the Transactions
-	for (auto t : _transaction)
-	{
-		transactions.emplace_back(t.getHashTransaction());
-	}
-	BuildMerkleRoot();
-
-}
-
-//!
 //! \brief Construct a Block without no reference to the previous one. Should be used with precautions
 //!
 //! \param : previousBlockHash the previous Block Hash
@@ -39,8 +18,8 @@ Block::Block(string previousBlockHash, int nbtransaction, vector<string> tr, con
 
 
 //!
-//! \brief Simple Constructor only used for Packet class. This constructs a semi valid Block,
-//!		   The Block is not valid. Should not be used, unless when creating Packet
+//! \brief Simple Constructor only used for Starting a blockchain. This constructs a semi valid Block,
+//!		   The Block is not valid. Should not be used, unless when creating a chain.
 //! \param : p 
 //! \return :
 //!
@@ -93,7 +72,9 @@ bool Block::isValid() const
 		return false;
 	if (header.get_NumeroBloc() == 0)
 		return true;
-	if (SHA_256::sha256(string(header.get_HashMerkleRoot() + std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second)))
+	if (SHA_256::sha256(string(std::to_string(header.get_Time().count()) + 
+		std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second) + 
+		header.get_HashMerkleRoot() + previousHash))
 		.substr(0, DIFFICULTY_MINING) != std::string(DIFFICULTY_MINING, '0'))
 		return false;
 	std::vector<string> tr_buf = transactions;
@@ -130,8 +111,12 @@ void Block::BuildMerkleRoot()
 	}
 
 	header.setHashMerkleRoot(hashTree.at(0));
-	header.setTime(boost::posix_time::second_clock::local_time());
-
+	//Update timestamp
+	std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+		std::chrono::system_clock::now().time_since_epoch()
+		);
+	header.setTime(ms);
+	//Update Hash
 	currentHash = SHA_256::sha256(SHA_256::sha256(header.get_HashMerkleRoot()));
 }
 
@@ -148,9 +133,15 @@ superLong Block::solveProofofWork()
 	string sol(DIFFICULTY_MINING, '0');
 	while (true) {
 
-		string hash = SHA_256::sha256(string(header.get_HashMerkleRoot() + std::to_string(incr) + std::to_string(nonce)));
+		string hash = SHA_256::sha256(string(
+			std::to_string(header.get_Time().count()) + 
+			std::to_string(incr) + std::to_string(nonce) + 
+			header.get_HashMerkleRoot() + previousHash));
 		if (hash.substr(0, DIFFICULTY_MINING) == sol)
+		{
+			currentHash = hash;
 			break;
+		}
 		else
 			++nonce;
 		if (limit - 1 == nonce) // Increment the incr when nonce reach unsigned long long int max value
@@ -176,7 +167,7 @@ bool Block::containsTransactions(const Transaction& tr) const
 }
 
 
-void Block::set_Hash_Merkle_Root(string h)
+void Block::update_PreviousHash(string h)
 {
 	previousHash = h;
 }
@@ -210,7 +201,7 @@ std::ostream& operator<<(std::ostream& os, const Block& p)
 	os << "Previous hash     : " << p.previousHash << std::endl;
 	os << "Bloc number       : " << p.get_Header().get_NumeroBloc() << std::endl;
 	os << "Nonce             : " << p.get_Header().get_Nonce().second << std::endl;
-	os << "Time mined        : " << p.get_Header().get_Time() << std::endl;
+	os << "Time mined        : " << p.get_Header().get_Time().count() << std::endl;
 	os << "Transaction list: " << std::endl;
 	for (const auto& tr : p.get_Transactions_List())
 	{

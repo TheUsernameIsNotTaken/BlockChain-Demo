@@ -10,8 +10,8 @@
 //! \param : _numeroBloc The number of the Block
 //! \return :
 //!
-BlockHeader::BlockHeader(int _numeroBloc) :
-	blockNumber(_numeroBloc), merkleRootHash(""), timestamp(), nonce()
+BlockHeader::BlockHeader(int _blockNumber) :
+	blockNumber(_blockNumber), merkleRootHash(""), timestamp(), nonce()
 {
 }
 
@@ -35,7 +35,7 @@ void BlockHeader::setHashMerkleRoot(string hash) {
 }
 
 
-void BlockHeader::setTime(boost::posix_time::ptime time) {
+void BlockHeader::setTime(std::chrono::milliseconds time) {
 	timestamp = time;
 }
 
@@ -54,7 +54,7 @@ void BlockHeader::setNumero(int nmB) {
 	blockNumber = nmB;
 }
 
-boost::posix_time::ptime BlockHeader::get_Time() const {
+std::chrono::milliseconds BlockHeader::get_Time() const {
 	return timestamp;
 }
 string BlockHeader::get_HashMerkleRoot() const {

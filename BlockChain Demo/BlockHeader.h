@@ -1,8 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <string>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/date_time/posix_time/time_serialize.hpp>
+#include <chrono>
 
 using std::string;
 using superLong = std::pair<unsigned long long, unsigned long long>;
@@ -20,15 +19,15 @@ public:
 	void setNonce(superLong);
 	void setNumero(int);
 	void setHashMerkleRoot(string);
-	void setTime(boost::posix_time::ptime);
+	void setTime(std::chrono::milliseconds);
 
-	boost::posix_time::ptime get_Time() const;
-	string					 get_HashMerkleRoot() const;
-	int						 get_NumeroBloc() const;
-	superLong				 get_Nonce()	const;
+	std::chrono::milliseconds get_Time() const;
+	string					  get_HashMerkleRoot() const;
+	int						  get_NumeroBloc() const;
+	superLong				  get_Nonce()	const;
 private:
 	int blockNumber;
-	boost::posix_time::ptime timestamp;
+	std::chrono::milliseconds timestamp;
 	superLong nonce;
 	string merkleRootHash;
 };
