@@ -27,7 +27,7 @@ BlockHeader::~BlockHeader()
 //!
 bool BlockHeader::operator==(const BlockHeader& rhs) const
 {
-	return (merkleRootHash == rhs.merkleRootHash && blockNumber == rhs.get_NumeroBloc() && timestamp == rhs.get_Time());
+	return (merkleRootHash == rhs.merkleRootHash && blockNumber == rhs.get_BlockNumber() && timestamp == rhs.get_Time());
 }
 
 void BlockHeader::setHashMerkleRoot(string hash) {
@@ -44,7 +44,7 @@ superLong BlockHeader::get_Nonce() const
 	return nonce;
 }
 
-int BlockHeader::get_NumeroBloc() const {
+int BlockHeader::get_BlockNumber() const {
 	return blockNumber;
 }
 void BlockHeader::setNonce(superLong nce) {

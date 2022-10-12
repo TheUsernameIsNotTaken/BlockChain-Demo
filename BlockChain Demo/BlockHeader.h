@@ -23,7 +23,7 @@ public:
 
 	std::chrono::milliseconds get_Time() const;
 	string					  get_HashMerkleRoot() const;
-	int						  get_NumeroBloc() const;
+	int						  get_BlockNumber() const;
 	superLong				  get_Nonce()	const;
 private:
 	int blockNumber;

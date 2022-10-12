@@ -70,16 +70,17 @@ bool Block::isValid() const
 
 	if (numOfTra != transactions.size())
 		return false;
-	if (header.get_NumeroBloc() == 0)
+	if (header.get_BlockNumber() == 0)
 		return true;
 	if (SHA_256::sha256(string(std::to_string(header.get_Time().count()) + 
 		std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second) + 
 		header.get_HashMerkleRoot() + previousHash))
 		.substr(0, DIFFICULTY_MINING) != std::string(DIFFICULTY_MINING, '0'))
 		return false;
+
+	//Double transaction check - Bug: If I copy the last transaction, for parity, then it is wrong. -> Change it.
 	std::vector<string> tr_buf = transactions;
 	std::sort(tr_buf.begin(), tr_buf.end());
-
 	if (std::unique(tr_buf.begin(), tr_buf.end()) != tr_buf.end())
 		return false;
 
@@ -97,7 +98,8 @@ void Block::BuildMerkleRoot()
 {
 	// To get a even number of transactions
 	if (transactions.size() & 1) {
-		transactions.push_back(transactions.at(transactions.size() - 1)); numOfTra++;
+		transactions.push_back(PARITY_TRANSACTION.getHashTransaction());
+		numOfTra++;
 	}
 	int N = transactions.size();
 
@@ -199,13 +201,13 @@ std::ostream& operator<<(std::ostream& os, const Block& p)
 	os << "***************************************************************************" << std::endl;
 	os << "Bloc hash         : " << p.currentHash << std::endl;
 	os << "Previous hash     : " << p.previousHash << std::endl;
-	os << "Bloc number       : " << p.get_Header().get_NumeroBloc() << std::endl;
+	os << "Bloc number       : " << p.get_Header().get_BlockNumber() << std::endl;
 	os << "Nonce             : " << p.get_Header().get_Nonce().second << std::endl;
 	os << "Time mined        : " << p.get_Header().get_Time().count() << std::endl;
 	os << "Transaction list: " << std::endl;
-	for (const auto& tr : p.get_Transactions_List())
+	for (auto& tra : p.get_Transactions_List())
 	{
-		std::cout << "    " << tr << std::endl;
+		os << "		" << tra << std::endl;
 	}
 	os << "***************************************************************************" << std::endl;
 	os << std::endl;
