@@ -1,12 +1,15 @@
 # BlockChain-Demo
 A demo app to show basic blockchain workflow for a school project.
 
-WIP.
+State: Finished Working logic.
 
-Current development: Unit-test level of work. Proof-of-Concept should be seen from it.
+Current development:
+ - Unit-test level of work.
+ - Debugged classes.
+ - PoW algorithm implemented.
+ - Validity and Correction check for messages, transactions and blocks.
 
-Goal: A Whole (maybe shell-like) applictaion to build blocks and mine them with commands.
+The blockchain parts can be used to make an interactive app, but the how-it-works can already be seen from the project.
 
 Using:
- - Boost for timesamps
  - CryptoCC for cryptographic algorithms.
