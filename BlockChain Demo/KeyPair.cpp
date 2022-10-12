@@ -1,5 +1,6 @@
 #include "KeyPair.h"
 
+//Declare a NEW Key pair, by generating a new Private and Public key pair. Uses CryptoPP library.
 KeyPair::KeyPair() :
 	publicKey(), privateKey()
 {
@@ -11,34 +12,41 @@ KeyPair::KeyPair() :
 	privateKey = RSA::PrivateKey(parameters);
 }
 
+//Declare keypair as a copy of an other keypair.
 KeyPair::KeyPair(const KeyPair& _keys) :
 	publicKey(_keys.publicKey), privateKey(_keys.privateKey)
 {
 }
 
+//Declare a keypair by using a specific Private and Public key.
 KeyPair::KeyPair(const RSA::PublicKey& _publicKey, const RSA::PrivateKey& _privateKey) :
 	publicKey(_publicKey),
 	privateKey(_privateKey)
 {
 }
 
+//Set the private key of the pair.
 void KeyPair::setPrivateKey(const RSA::PrivateKey& sk)
 {
 	privateKey = sk;
 }
+//Set the public key of the pair.
 void KeyPair::setPublicKey(const RSA::PublicKey& pk) {
 	publicKey = pk;
 }
 
+//Returns the public key.
 RSA::PublicKey KeyPair::getPublicKey() const
 {
 	return publicKey;
 }
+//Returns the private key.
 RSA::PrivateKey KeyPair::getPrivateKey() const
 {
 	return privateKey;
 }
 
+//Encrypt a message using the KeyPair. Returns the chipper. Uses CryptoPP's RSA algorithm.
 string KeyPair::encrypt(string message) {
 	using namespace CryptoPP;
 	AutoSeededRandomPool rng;
@@ -58,6 +66,7 @@ string KeyPair::encrypt(string message) {
 	return cipher;
 }
 
+//Decrypt a chipper using the KeyPair. Returns the message. Uses CryptoPP's RSA algorithm.
 string KeyPair::decrypt(string cipher) {
 	using namespace CryptoPP;
 	AutoSeededRandomPool rng;

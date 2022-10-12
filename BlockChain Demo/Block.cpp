@@ -67,11 +67,13 @@ bool Block::operator==(const Block& rhs) const
 //!
 bool Block::isValid() const
 {
-
+	//Check if no transaction was added
 	if (numOfTra != transactions.size())
 		return false;
+	//Pass, if it is the header block. - It's value will never be processed.
 	if (header.get_BlockNumber() == 0)
 		return true;
+	//Check if PoW hash is correct.
 	if (SHA_256::sha256(string(std::to_string(header.get_Time().count()) + 
 		std::to_string(header.get_Nonce().first) + std::to_string(header.get_Nonce().second) + 
 		header.get_HashMerkleRoot() + previousHash))
@@ -79,6 +81,7 @@ bool Block::isValid() const
 		return false;
 
 	//Double transaction check - Bug: If I copy the last transaction, for parity, then it is wrong. -> Change it.
+	//Added parity transaction as debug.
 	std::vector<string> tr_buf = transactions;
 	std::sort(tr_buf.begin(), tr_buf.end());
 	if (std::unique(tr_buf.begin(), tr_buf.end()) != tr_buf.end())
@@ -168,33 +171,35 @@ bool Block::containsTransactions(const Transaction& tr) const
 	return (std::find(transactions.begin(), transactions.end(), tr.getHashTransaction()) != transactions.end());
 }
 
-
+//Update the previous Hash.
 void Block::update_PreviousHash(string h)
 {
 	previousHash = h;
 }
 
-
+//Returns header.
 const BlockHeader& Block::get_Header() const
 {
 	return header;
 }
 
-
+//Returns Prevoius Block's Hash.
 string Block::get_PreviousBlockHash() const
 {
 	return previousHash;
 }
+//Returns the Block's Hash.
 string Block::get_BlockHash() const
 {
 	return currentHash;
 }
-
+//Return the transaction Hash List.
 const vector<string> Block::get_Transactions_List() const
 {
 	return transactions;
 }
 
+//The Block's data in string.
 std::ostream& operator<<(std::ostream& os, const Block& p)
 {
 	os << std::endl;

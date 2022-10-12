@@ -17,7 +17,7 @@ public:
 	bool operator==(const BlockHeader&) const;
 
 	void setNonce(superLong);
-	void setNumero(int);
+	void setBlockNumber(int);
 	void setHashMerkleRoot(string);
 	void setTime(std::chrono::milliseconds);
 

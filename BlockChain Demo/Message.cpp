@@ -1,5 +1,6 @@
 #include "Message.h"
 
+//Create a new message by giving all information, then signing it.
 Message::Message(string _information, const KeyPair& _keys) :
 	message(_information),
 	publicKey(_keys.getPublicKey()),
@@ -8,16 +9,18 @@ Message::Message(string _information, const KeyPair& _keys) :
 	sign(_keys.getPrivateKey());
 }
 
-//Getters
+//Get message
 string Message::getMessage() const
 {
 	return message;
 }
+//Get the public key to check signature.
 RSA::PublicKey Message::getPublicKey() const
 {
 	return publicKey;
 }
 
+//Check if the digital signature is correct.
 bool Message::verifier() const
 {
 	//Declare the used objects
@@ -26,6 +29,7 @@ bool Message::verifier() const
 	return verifier.VerifyMessage((const byte*)message.c_str(), message.length(), signature, signature.size());
 }
 
+//Do the digital signature.
 SecByteBlock Message::sign(RSA::PrivateKey pk)
 {
 	//Declare the used objects

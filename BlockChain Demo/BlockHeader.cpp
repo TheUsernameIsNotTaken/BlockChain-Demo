@@ -30,33 +30,39 @@ bool BlockHeader::operator==(const BlockHeader& rhs) const
 	return (merkleRootHash == rhs.merkleRootHash && blockNumber == rhs.get_BlockNumber() && timestamp == rhs.get_Time());
 }
 
+//Set/Update the Merkle Tree Root's Hash.
 void BlockHeader::setHashMerkleRoot(string hash) {
 	merkleRootHash = hash;
 }
-
-
-void BlockHeader::setTime(std::chrono::milliseconds time) {
-	timestamp = time;
+//Returns the Merkle Tree Root's Hash.
+string BlockHeader::get_HashMerkleRoot() const {
+	return merkleRootHash;
 }
 
+//Returns the block's number in the chain.
+int BlockHeader::get_BlockNumber() const {
+	return blockNumber;
+}
+//Set the Block's number in chain.
+void BlockHeader::setBlockNumber(int nmB) {
+	blockNumber = nmB;
+}
+
+//Set the Nonce.
+void BlockHeader::setNonce(superLong nce) {
+	nonce = nce;
+}
+//Returns the Nonce.
 superLong BlockHeader::get_Nonce() const
 {
 	return nonce;
 }
 
-int BlockHeader::get_BlockNumber() const {
-	return blockNumber;
+//Set/Update the TimeStamp.
+void BlockHeader::setTime(std::chrono::milliseconds time) {
+	timestamp = time;
 }
-void BlockHeader::setNonce(superLong nce) {
-	nonce = nce;
-}
-void BlockHeader::setNumero(int nmB) {
-	blockNumber = nmB;
-}
-
+//Returns TimeStamp
 std::chrono::milliseconds BlockHeader::get_Time() const {
 	return timestamp;
-}
-string BlockHeader::get_HashMerkleRoot() const {
-	return merkleRootHash;
 }

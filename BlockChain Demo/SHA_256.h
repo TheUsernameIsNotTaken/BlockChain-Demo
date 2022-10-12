@@ -8,6 +8,7 @@ using namespace CryptoPP;
 class SHA_256
 {
 public:
+	//Hash a string using SHA-256. Uses CryptoPP library sha algorithm.
 	static string sha256(string message) {
 		SHA256 hash;
 		byte digest[SHA256::DIGESTSIZE];

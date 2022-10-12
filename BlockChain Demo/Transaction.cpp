@@ -1,5 +1,6 @@
 #include "Transaction.h"
 
+//Create an user's message as a new transaction then hash it.
 Transaction::Transaction(const User& _user, const Message& _message) :
 	user(_user),
 	message(_message)
@@ -26,20 +27,23 @@ bool Transaction::isCorrect() const
 	return true;
 }
 
-
+//A message's string form.
 string Transaction::toString() const {
 	string os;
 	os += user.toString() + "_" + message.getMessage();
 	return os;
 }
 
+//Returns the user.
 User Transaction::getUser() const
 {
 	return user;
 }
+//Returns the mesaage.
 Message Transaction::getMessage() const {
 	return message;
 }
+//Returns the hash.
 string Transaction::getHashTransaction() const {
 	return hashTransaction;
 }
